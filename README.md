@@ -368,7 +368,6 @@ La API sigue **RFC 7807 Problem Details** para todas las respuestas de error:
 ```json
 {
   "status": 422,
-  "type": "https://couriermax.api/errors/vehicle_capacity_exceeded",
   "title": "Business Rule Violation",
   "detail": "Vehicle 'ABC-123' capacity exceeded: Weight 350 kg exceeds available capacity 280.50 kg",
   "errorCode": "VEHICLE_CAPACITY_EXCEEDED",
