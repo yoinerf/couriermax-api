@@ -118,7 +118,7 @@ Editar `src/CourierMax.API/appsettings.Development.json`:
 }
 ```
 
-### 3. Aplicar Migraciones
+### 3. Aplicar Migraciones o ejecutar API para iniciar migración
 
 ```bash
 dotnet ef database update --project src/CourierMax.Infrastructure --startup-project src/CourierMax.API
