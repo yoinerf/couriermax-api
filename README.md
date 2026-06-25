@@ -198,7 +198,8 @@ Al iniciar, la base de datos se inicializa con:
 
 ---
 
-## Se adjunta una colección swagger para testeo en la raíz del repositorio
+## Se adjunta en la raíz, una colección postman para testeo en la raíz del repositorio
+
 ## Ejemplos de Uso (curl)
 
 ### Crear un Envío
