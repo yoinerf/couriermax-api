@@ -1,0 +1,60 @@
+# Build artifacts
+bin/
+obj/
+*.log
+*.vs
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# ASP.NET Core
+wwwroot/node_modules/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Visual Studio cache options
+*.VC.opendb
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Entity Framework Migrations
+__EFMigrationsHistory
+
+# Local DB
+*.mdf
+*.ldf
+
+# Visual Studio Code
+.vscode/
+
+# Dotnet watch temp
+**/dotnet-watch.*
+
+# JetBrains Rider
+.idea/
+
+# User profile files
+*.userprefs

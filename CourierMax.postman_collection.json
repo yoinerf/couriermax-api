@@ -1,0 +1,403 @@
+{
+  "info": {
+    "_postman_id": "82c8a4a0-4a16-4b40-b065-4e7ccfc9d673",
+    "name": "CourierMax API",
+    "description": "Colección completa de endpoints para el sistema de logística CourierMax.\nBase URL: http://localhost:5041\n\nTipos de servicio: 0=Standard, 1=Express, 2=SameDay\nTipos de paquete: 0=Document, 1=Package, 2=Fragile, 3=Perishable\nEstados: 0=Created, 1=Assigned, 2=InTransit, 3=Delivered, 4=Cancelled",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21334352"
+  },
+  "item": [
+    {
+      "name": "Shipments",
+      "item": [
+        {
+          "name": "RF-01 Crear Envío (Standard - Paquete normal)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderName\": \"Ana García\",\n  \"senderPhone\": \"3001234567\",\n  \"senderAddress\": \"Calle 100 # 15-30, Bogotá\",\n  \"recipientName\": \"Carlos Mendoza\",\n  \"recipientPhone\": \"3219876543\",\n  \"recipientAddress\": \"Carrera 50 # 80-45, Medellín\",\n  \"packageWeight\": 5,\n  \"packageDimensions\": \"150x100x150\",\n  \"packageType\": 1,\n  \"serviceType\": 0,\n  \"originCityId\": 1,\n  \"destinationCityId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-01 Crear Envío (Express - Frágil - Ejemplo del enunciado)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderName\": \"Laura Martínez\",\n  \"senderPhone\": \"6011234567\",\n  \"senderAddress\": \"Av. El Dorado # 68-05, Bogotá\",\n  \"recipientName\": \"Pedro Álvarez\",\n  \"recipientPhone\": \"3158765432\",\n  \"recipientAddress\": \"Calle 33 # 70-82, Medellín\",\n  \"packageWeight\": 5.0,\n  \"packageDimensions\": \"40x30x20\",\n  \"packageType\": 2,\n  \"serviceType\": 1,\n  \"originCityId\": 1,\n  \"destinationCityId\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-01 Crear Envío (Mismo día - Perecedero)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderName\": \"Frutas del Valle\",\n  \"senderPhone\": \"3107654321\",\n  \"senderAddress\": \"Zona Industrial, Cali\",\n  \"recipientName\": \"Supermercado Central\",\n  \"recipientPhone\": \"6023456789\",\n  \"recipientAddress\": \"Centro Comercial Unicentro, Barranquilla\",\n  \"packageWeight\": 8.5,\n  \"packageDimensions\": \"50x40x30\",\n  \"packageType\": 3,\n  \"serviceType\": 2,\n  \"originCityId\": 3,\n  \"destinationCityId\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Obtener Envío por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/{{shipmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "{{shipmentId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Rastrear por Código",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/tracking/{{trackingCode}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "tracking",
+                "{{trackingCode}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-03 Asignar a Vehículo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    //Puede ir con o sin vehículo para asignación automática\n  \"vehicleId\": 3,\n  \"assignedBy\": \"operaciones@couriermax.co\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/{{shipmentId}}/assign",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "{{shipmentId}}",
+                "assign"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-02 Actualizar Estado → En Tránsito",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newStatus\": 2, // 2 en transito\n  \"changedBy\": \"conductor.2@couriermax.co\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/{{shipmentId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "{{shipmentId}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-02 Actualizar Estado → Entregado",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newStatus\": 3,\n  \"changedBy\": \"conductor.maria@couriermax.co\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/{{shipmentId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "{{shipmentId}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-02 Cancelar Envío (con motivo)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newStatus\": 4,\n  \"changedBy\": \"admin@couriermax.co\",\n  \"reason\": \"El cliente solicitó cancelación por cambio de planes de viaje\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/{{shipmentId}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "{{shipmentId}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-05 Envíos Atrasados (SLA)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/shipments/overdue?from=2026-05-10&to=2026-12-31",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "shipments",
+                "overdue"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2026-05-10"
+                },
+                {
+                  "key": "to",
+                  "value": "2026-12-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "RF-06 Desempeño de Todos los Conductores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/driver-performance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "reports",
+                "driver-performance"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RF-06 Desempeño por Conductor (ID=1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/reports/driver-performance/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "reports",
+                "driver-performance",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Listar Vehículos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Vehículo por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5041"
+    },
+    {
+      "key": "shipmentId",
+      "value": "1"
+    },
+    {
+      "key": "trackingCode",
+      "value": "CM-00000001"
+    }
+  ]
+}
